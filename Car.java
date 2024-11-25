@@ -13,7 +13,7 @@
 
 public class Car {
     // Variable declaration
-    long timeIn;
+    long timeIn, arrivalTime, departureTime;
 
     /**
      * Accessor method for the car's elapsed time
@@ -29,5 +29,7 @@ public class Car {
      */
     public Car() {
         timeIn = System.currentTimeMillis();
+        arrivalTime = System.currentTimeMillis();
+        departureTime = System.currentTimeMillis();
     } // End of Car()
 } // End of Car 

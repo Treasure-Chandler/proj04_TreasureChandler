@@ -140,6 +140,11 @@ public class Garage {
         return timeElapsed;
     } // End of remove()
 
+    /**
+     * Searches for a car's parking spot
+     * @param carNumber     A car's specified index
+     * @return              The car's index
+     */
     public int findBayOfCar(int carNumber) {
         // Variables declaration
         int index = -1;
@@ -157,4 +162,13 @@ public class Garage {
 
         return index;
     } // End of findBayOfCar()
+
+    /**
+     * Garage constructor to instantiate the cars array to
+     * the capacity's length
+     * @param capacity      Capacity of the garage
+     */
+    public Garage(int capacity) {
+        Car cars[] = new Car[capacity];
+    } // End of Garage()
 } // End of Garage

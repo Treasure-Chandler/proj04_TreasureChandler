@@ -57,8 +57,9 @@ public class Garage {
      * of all of the parking spots
      */
     public void displayState() {
+        // Iterate through all of the cars in the garage
         for (int i = 0; i < cars.length; i++) {
-            // Prints all of the spots in the garage
+            // Print all of the spots in the garage
             System.out.print(cars[i] + "\t");
             // Parking spot validation
             if (cars[i] == null) {
@@ -74,7 +75,86 @@ public class Garage {
         }
     } // End of displayState()
 
-    // public int park(Car auto) {
-        
-    // }
+    /**
+     * Park the cars in free spots in the garage
+     * @param auto      Current car in question
+     * @return          A car's specified index
+     */
+    public int park(Car auto) {
+        // Variables declaration
+        int takenSpots = 0;
+
+        // Iterate through the parking spots
+        for (int i = 0; i < cars.length; i++) {
+            if (!isEmpty(i)) {
+                /*
+                 * If the current spot is not empty, increment
+                 * the amount of taken spots
+                 */
+                takenSpots++;
+            } else {
+                /*
+                 * Otherwise, park the current car and return its
+                 * index
+                 */
+                cars[i] = auto;
+                return i;
+            }
+        }
+
+        // Return -1 if the garage is full
+        if (takenSpots == cars.length) {
+            return -1;
+        }
+
+        // Fallback line so there is still something to return
+        return -1;
+    } // End of park()
+
+    /**
+     * Remove a car from a parking spot
+     * @param index     A car's specified index
+     * @return          The car's elapsed time at its parking spot
+     */
+    public double remove(int index) {
+        /*
+         * "Caution" check if the index is valid and the bay is
+         * occupied
+         */
+        if (index < 0 || index >= cars.length || cars[index] == null) {
+            throw new IllegalArgumentException("The index is invalid " +
+                                                "or there is no car " +
+                                                "at the specified spot.");
+        }
+
+        // Get car at the specified index
+        Car car = cars[index];
+
+        // Compute the elapsed parking time
+        double timeElapsed = car.getTime();
+
+        // Take the car out of the spot
+        cars[index] = null;
+
+        // Then return the elapsed time
+        return timeElapsed;
+    } // End of remove()
+
+    public int findBayOfCar(int carNumber) {
+        // Variables declaration
+        int index = -1;
+
+        // Iterate up to the provided carNumber
+        for (int i = 0; i < carNumber; i++) {
+            // Update index
+            index++;
+
+            // Skip empty spots
+            while (index < cars.length && isEmpty(index)) {
+                index++;
+            }
+        }
+
+        return index;
+    } // End of findBayOfCar()
 } // End of Garage
